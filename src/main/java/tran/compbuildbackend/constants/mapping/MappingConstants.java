@@ -9,7 +9,7 @@ public class MappingConstants {
     public static final String URL_SEPARATOR = "/";
 
     // front end mapping
-    public static final String FRONT_END_MAPPING = "http://localhost:3000";
+    public static final String FRONT_END_MAPPING = "https://todd-comp-build-frontend.herokuapp.com/";
 
     // ApplicationUserController
     public static final String CONFIRM_REGISTRATION_URL = "/confirmRegistration/";
