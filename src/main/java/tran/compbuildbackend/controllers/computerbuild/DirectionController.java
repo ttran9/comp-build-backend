@@ -16,7 +16,7 @@ import static tran.compbuildbackend.constants.mapping.MappingConstants.*;
 
 @RestController
 @RequestMapping(DIRECTION_API)
-@CrossOrigin("https://todd-comp-build-frontend.herokuapp.com/")
+@CrossOrigin(origins = "https://todd-comp-build-frontend.herokuapp.com/")
 public class DirectionController {
 
     private DirectionService directionService;

@@ -16,7 +16,7 @@ import static tran.compbuildbackend.constants.mapping.MappingConstants.*;
 
 @RestController
 @RequestMapping(OVERCLOCKING_NOTE_API)
-@CrossOrigin("https://todd-comp-build-frontend.herokuapp.com/")
+@CrossOrigin(origins = "https://todd-comp-build-frontend.herokuapp.com/")
 public class OverclockingNoteController {
 
     private OverclockingNoteService overclockingNoteService;
