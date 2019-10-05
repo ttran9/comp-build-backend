@@ -80,7 +80,6 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
     @Override
     public void sendSuccessRegistrationEmail(ApplicationUser registeredUser, HttpServletRequest request) {
         if(request != null) {
-//            String appUrl = request.getScheme() + "://" + request.getServerName() +  ":" + request.getServerPort();
             try {
                 eventPublisher.publishEvent(new OnRegistrationSuccessEvent(registeredUser, request.getLocale(), FRONT_END_MAPPING));
             }
@@ -169,11 +168,10 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
         if(request == null) {
             throw new GenericRequestException(REQUEST_IS_NULL_ERROR);
         }
-        String appUrl = request.getScheme() + "://" + request.getServerName() +  ":" + request.getServerPort();
         ApplicationUser user = getUserByEmail(userName, EXCEPTION_REQUEST_PASSWORD_CHANGE_FAILED);
         try {
             checkForOldToken(user);
-            eventPublisher.publishEvent(new OnPasswordResetRequestEvent(user, request.getLocale(), appUrl));
+            eventPublisher.publishEvent(new OnPasswordResetRequestEvent(user, request.getLocale(), FRONT_END_MAPPING));
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
