@@ -12,8 +12,10 @@ public class MappingConstants {
     public static final String FRONT_END_MAPPING = "https://todd-comp-build-frontend.herokuapp.com/";
 
     // ApplicationUserController
-    public static final String CONFIRM_REGISTRATION_URL = "/confirmRegistration/";
-    public static final String CHANGE_PASSWORD_URL = "/changePassword/";
+    public static final String CONFIRM_REGISTRATION_ENDPOINT = "confirmRegistration/";
+    public static final String CONFIRM_REGISTRATION_URL = URL_SEPARATOR + CONFIRM_REGISTRATION_ENDPOINT;
+    public static final String CHANGE_PASSWORD_ENDPOINT = "changePassword/";
+    public static final String CHANGE_PASSWORD_URL = URL_SEPARATOR + CHANGE_PASSWORD_ENDPOINT;
     public static final String USERS_API = "/api/users";
     public static final String REGISTER_URL = "/register";
     public static final String LOGIN_URL = "/login";

@@ -10,7 +10,7 @@ import tran.compbuildbackend.services.verificationtoken.ChangePasswordTokenServi
 
 import static tran.compbuildbackend.constants.email.EmailConstants.PASSWORD_CHANGE_REQUEST;
 import static tran.compbuildbackend.constants.exception.ExceptionConstants.PASSWORD_CANNOT_BE_CHANGED;
-import static tran.compbuildbackend.constants.mapping.MappingConstants.CHANGE_PASSWORD_URL;
+import static tran.compbuildbackend.constants.mapping.MappingConstants.CHANGE_PASSWORD_ENDPOINT;
 import static tran.compbuildbackend.exceptions.ExceptionUtility.throwPasswordException;
 
 @Component
@@ -33,7 +33,7 @@ public class ChangePasswordListener implements ApplicationListener<OnPasswordRes
         try {
             String subject = "Change Password";
             EventUtil.sendEmail(event, changePasswordTokenService, messageSource, PASSWORD_CHANGE_REQUEST, mailSender,
-                    subject, CHANGE_PASSWORD_URL);
+                    subject, CHANGE_PASSWORD_ENDPOINT);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             throwPasswordException(PASSWORD_CANNOT_BE_CHANGED);

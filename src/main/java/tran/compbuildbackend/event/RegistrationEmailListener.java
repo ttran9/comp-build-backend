@@ -10,7 +10,7 @@ import tran.compbuildbackend.event.utility.EventUtil;
 import tran.compbuildbackend.services.verificationtoken.EmailVerificationTokenServiceImpl;
 
 import static tran.compbuildbackend.constants.email.EmailConstants.REGISTRATION_SUCCESS_CONFIRMATION;
-import static tran.compbuildbackend.constants.mapping.MappingConstants.CONFIRM_REGISTRATION_URL;
+import static tran.compbuildbackend.constants.mapping.MappingConstants.CONFIRM_REGISTRATION_ENDPOINT;
 
 @Component
 public class RegistrationEmailListener implements ApplicationListener<OnRegistrationSuccessEvent> {
@@ -32,7 +32,7 @@ public class RegistrationEmailListener implements ApplicationListener<OnRegistra
         try {
             String subject = "Confirm Registration";
             EventUtil.sendEmail(event, emailVerificationTokenService, messageSource, REGISTRATION_SUCCESS_CONFIRMATION,
-                    mailSender, subject, CONFIRM_REGISTRATION_URL);
+                    mailSender, subject, CONFIRM_REGISTRATION_ENDPOINT);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             throw new UsernameNotFoundException("account cannot be created at this time");
