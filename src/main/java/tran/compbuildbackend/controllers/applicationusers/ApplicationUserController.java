@@ -30,7 +30,6 @@ import static tran.compbuildbackend.constants.messages.ResponseMessage.*;
 
 @RestController
 @RequestMapping(USERS_API)
-@CrossOrigin(origins = "https://todd-comp-build-frontend.herokuapp.com/")
 public class ApplicationUserController {
 
     private ApplicationUserService applicationUserService;
