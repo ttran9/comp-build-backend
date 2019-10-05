@@ -9,7 +9,8 @@ public class MappingConstants {
     public static final String URL_SEPARATOR = "/";
 
     // front end mapping
-    public static final String FRONT_END_MAPPING = "https://todd-comp-build-frontend.herokuapp.com/";
+    public static final String FRONT_END_APP_URL = System.getenv("APP_URL");
+    public static final String FRONT_END_MAPPING = FRONT_END_APP_URL + URL_SEPARATOR;
 
     // ApplicationUserController
     public static final String CONFIRM_REGISTRATION_ENDPOINT = "confirmRegistration/";
