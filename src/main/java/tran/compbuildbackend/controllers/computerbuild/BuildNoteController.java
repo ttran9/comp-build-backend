@@ -16,6 +16,7 @@ import static tran.compbuildbackend.constants.mapping.MappingConstants.*;
 
 @RestController
 @RequestMapping(BUILD_NOTE_API)
+@CrossOrigin("https://todd-comp-build-frontend.herokuapp.com/")
 public class BuildNoteController {
 
     private BuildNoteService buildNoteService;

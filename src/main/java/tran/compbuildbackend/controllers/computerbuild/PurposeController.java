@@ -16,6 +16,7 @@ import static tran.compbuildbackend.constants.mapping.MappingConstants.*;
 
 @RestController
 @RequestMapping(PURPOSE_API)
+@CrossOrigin("https://todd-comp-build-frontend.herokuapp.com/")
 public class PurposeController {
 
     private PurposeService purposeService;

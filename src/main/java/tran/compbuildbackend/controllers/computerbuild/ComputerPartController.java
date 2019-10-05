@@ -17,6 +17,7 @@ import static tran.compbuildbackend.constants.mapping.MappingConstants.*;
 
 @RestController
 @RequestMapping(COMPUTER_PART_API)
+@CrossOrigin("https://todd-comp-build-frontend.herokuapp.com/")
 public class ComputerPartController {
 
     private ComputerPartService computerPartService;
