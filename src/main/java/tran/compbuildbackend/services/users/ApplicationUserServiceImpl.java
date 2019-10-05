@@ -24,6 +24,7 @@ import static tran.compbuildbackend.constants.exception.ExceptionConstants.*;
 import static tran.compbuildbackend.constants.fields.FieldConstants.EMAIL_FIELD;
 import static tran.compbuildbackend.constants.fields.FieldConstants.USER_NAME_FIELD;
 import static tran.compbuildbackend.constants.fields.FieldValueConstants.*;
+import static tran.compbuildbackend.constants.mapping.MappingConstants.FRONT_END_MAPPING;
 import static tran.compbuildbackend.exceptions.ExceptionUtility.*;
 
 @Service
@@ -79,9 +80,9 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
     @Override
     public void sendSuccessRegistrationEmail(ApplicationUser registeredUser, HttpServletRequest request) {
         if(request != null) {
-            String appUrl = request.getScheme() + "://" + request.getServerName() +  ":" + request.getServerPort();
+//            String appUrl = request.getScheme() + "://" + request.getServerName() +  ":" + request.getServerPort();
             try {
-                eventPublisher.publishEvent(new OnRegistrationSuccessEvent(registeredUser, request.getLocale(), appUrl));
+                eventPublisher.publishEvent(new OnRegistrationSuccessEvent(registeredUser, request.getLocale(), FRONT_END_MAPPING));
             }
             catch (Exception ex) {
                 System.out.println(ex.getMessage());
