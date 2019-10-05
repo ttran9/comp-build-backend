@@ -80,9 +80,8 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
     @Override
     public void sendSuccessRegistrationEmail(ApplicationUser registeredUser, HttpServletRequest request) {
         if(request != null) {
-            String appUrl = getAppUrl(request);
             try {
-                eventPublisher.publishEvent(new OnRegistrationSuccessEvent(registeredUser, request.getLocale(), appUrl));
+                eventPublisher.publishEvent(new OnRegistrationSuccessEvent(registeredUser, request.getLocale(), FRONT_END_MAPPING));
             }
             catch (Exception ex) {
                 System.out.println(ex.getMessage());
@@ -170,10 +169,9 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
             throw new GenericRequestException(REQUEST_IS_NULL_ERROR);
         }
         ApplicationUser user = getUserByEmail(userName, EXCEPTION_REQUEST_PASSWORD_CHANGE_FAILED);
-        String appUrl = getAppUrl(request);
         try {
             checkForOldToken(user);
-            eventPublisher.publishEvent(new OnPasswordResetRequestEvent(user, request.getLocale(), appUrl));
+            eventPublisher.publishEvent(new OnPasswordResetRequestEvent(user, request.getLocale(), FRONT_END_MAPPING));
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -236,11 +234,5 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
     private boolean checkForEmail(String email) {
         ApplicationUser user = applicationUserRepository.findByEmail(email);
         return user != null;
-    }
-
-    private String getAppUrl(HttpServletRequest request) {
-        String appUrl = System.getenv("APP_URL");
-        if(appUrl == null) appUrl = request.getScheme() + "://" + request.getServerName() +  ":" + request.getServerPort();
-        return appUrl;
     }
 }
