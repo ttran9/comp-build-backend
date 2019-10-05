@@ -9,6 +9,9 @@ public class LoginRequest {
     @NotBlank(message = "Password cannot be blank")
     private String password;
 
+    public LoginRequest() {
+    }
+
     public LoginRequest(@NotBlank(message = "Username cannot be blank") String username,
                         @NotBlank(message = "Password cannot be blank") String password) {
         this.username = username;
