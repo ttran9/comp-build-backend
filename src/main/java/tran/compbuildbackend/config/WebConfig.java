@@ -12,6 +12,6 @@ import static tran.compbuildbackend.constants.mapping.MappingConstants.*;
 public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/**").allowedOrigins("*");
+        registry.addMapping("/api/**").allowedOrigins(FRONT_END_APP_URL);
     }
 }
