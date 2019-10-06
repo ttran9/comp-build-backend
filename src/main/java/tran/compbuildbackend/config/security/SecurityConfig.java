@@ -89,9 +89,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         SecurityConstants.H2_URL
                 ).permitAll()
                 .antMatchers(SecurityConstants.SIGN_UP_URLS).anonymous()
-                .antMatchers(HttpMethod.POST, POST_PATHS).authenticated()
-                .antMatchers(HttpMethod.PATCH, PATCH_PATHS).authenticated()
-                .antMatchers(HttpMethod.DELETE, DELETE_PATHS).authenticated()
+//                .antMatchers(HttpMethod.POST, POST_PATHS).authenticated()
+//                .antMatchers(HttpMethod.PATCH, PATCH_PATHS).authenticated()
+//                .antMatchers(HttpMethod.DELETE, DELETE_PATHS).authenticated()
                 .antMatchers(HttpMethod.GET, GET_PATHS).permitAll();
 //                .anyRequest().authenticated();
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
