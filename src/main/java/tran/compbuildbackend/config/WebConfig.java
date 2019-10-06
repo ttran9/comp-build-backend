@@ -13,5 +13,10 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**").allowedOrigins(FRONT_END_APP_URL);
+        registry.addMapping("/api/computerpart").allowedOrigins(FRONT_END_APP_URL);
+        registry.addMapping("/api/buildnote").allowedOrigins(FRONT_END_APP_URL);
+        registry.addMapping("/api/overclockingnote").allowedOrigins(FRONT_END_APP_URL);
+        registry.addMapping("/api/direction").allowedOrigins(FRONT_END_APP_URL);
+        registry.addMapping("/api/purpose").allowedOrigins(FRONT_END_APP_URL);
     }
 }
