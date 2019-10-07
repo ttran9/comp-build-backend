@@ -11,3 +11,6 @@
 - Some issues I ran into while trying to deploy:
   - So I was getting an issue with an improper CORS configuration and I found [this](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-cors-global-java)
   to be a very helpful reference.
+
+- Demo
+  - A running demo for the front-end web application that utilizes this back-end API can be seen [here](https://todd-comp-build-frontend.herokuapp.com)
