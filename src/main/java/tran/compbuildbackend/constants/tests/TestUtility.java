@@ -64,4 +64,7 @@ public class TestUtility {
     public static final String TEST_PURPOSE_LIST_NOTE_TWO = "This is the first purpose note test new.";
 
     public static final String TEST_PROFILE = "test";
+    public static final String PRODUCTION_PROFILE = "prod";
+
+    public static final String PROFILES_ACTIVE_STRING = "spring.profiles.active";
 }
