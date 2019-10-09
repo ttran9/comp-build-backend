@@ -184,6 +184,11 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
         return user;
     }
 
+    @Override
+    public Iterable<ApplicationUser> getAllUsers() {
+        return applicationUserRepository.findAll();
+    }
+
     private ChangePasswordToken getChangePasswordTokenFromUser(ApplicationUser user) {
         return changePasswordTokenRepository.findByUser(user);
     }
