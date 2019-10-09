@@ -15,4 +15,5 @@ public class ExceptionConstants {
     public static final String CANNOT_RETRIEVE_TOKEN = "cannot retrieve token.";
     public static final String INVALID_IDENTIFIER_FORMAT = "invalid unique identifier format.";
     public static final String CANNOT_FIND_USER = "cannot find the user";
+    public static final String CANNOT_PARSE_PRICE = "cannot parse price!";
 }
