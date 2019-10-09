@@ -66,4 +66,9 @@ public interface ApplicationUserService {
      * @return The user with the associated user name if found, if not a custom exception is thrown.
      */
     ApplicationUser getUserByUsername(String userName);
+
+    /**
+     * @return A list of all the users.
+     */
+    Iterable<ApplicationUser> getAllUsers();
 }
