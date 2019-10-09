@@ -13,7 +13,6 @@ public class ComputerBuildConstants {
     public static final String PURPOSE_TYPE = "purt";
     public static final String BUILD_NOTE_TYPE = "bnt";
 
-
     // computer direction constants.
     public static final String DIRECTION_ABBREVIATION = "dir";
     public static final String COMPUTER_PART_ABBREVIATION = "cp";
