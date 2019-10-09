@@ -1,10 +1,12 @@
 package tran.compbuildbackend.constants.users;
 
 public class UserConstants {
+    private static final String USER_PASSWORD_KEY = "SAMPLE_PASSWORD";
+
     public static final String USER_NAME_ONE = "toddtran10";
     public static final String USER_ONE_EMAIL = "toddtran10@gmail.com";
     public static final String FULL_NAME_ONE = "Dwight Schrute";
-    public static final String USER_PASSWORD = "password";
+    public static final String USER_PASSWORD = System.getenv(USER_PASSWORD_KEY) != null ? System.getenv(USER_PASSWORD_KEY) : "password";
 
     public static final String USER_NAME_TWO = "wptran58";
     public static final String USER_TWO_EMAIL = "wptran58@gmail.com";
