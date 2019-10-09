@@ -8,6 +8,8 @@ import tran.compbuildbackend.repositories.computerbuild.ComputerBuildRepository;
 import tran.compbuildbackend.repositories.computerbuild.ComputerPartRepository;
 
 import static tran.compbuildbackend.constants.computerbuild.ComputerBuildConstants.*;
+import static tran.compbuildbackend.domain.utility.ComputerPartUtility.addValues;
+import static tran.compbuildbackend.domain.utility.ComputerPartUtility.subtractValues;
 import static tran.compbuildbackend.exceptions.ExceptionUtility.throwMessageException;
 
 @Service
@@ -32,7 +34,7 @@ public class ComputerPartServiceImpl implements ComputerPartService {
                 COMPUTER_PART_ABBREVIATION, retrievedComputerBuild));
 
         // ensure the computer build's price is updated before persisting to the db.
-        retrievedComputerBuild.setTotalPrice(retrievedComputerBuild.getTotalPrice() + computerPart.getPrice());
+        retrievedComputerBuild.setTotalPrice(addValues(retrievedComputerBuild.getTotalPrice(), computerPart.getPrice()));
         computerPart.setComputerBuild(retrievedComputerBuild);
 
         // persist the computer part.
@@ -60,7 +62,7 @@ public class ComputerPartServiceImpl implements ComputerPartService {
         // verify if the unique identifier points to the object to be updated.
         ComputerPart computerPart = getComputerPart(uniqueIdentifier, COMPUTER_PART_CANNOT_BE_DELETED);
 
-        retrievedComputerBuild.setTotalPrice(retrievedComputerBuild.getTotalPrice() - computerPart.getPrice());
+        retrievedComputerBuild.setTotalPrice(subtractValues(retrievedComputerBuild.getTotalPrice(), computerPart.getPrice()));
         computerPart.setComputerBuild(retrievedComputerBuild);
 
         // remove the computer part.
@@ -87,7 +89,7 @@ public class ComputerPartServiceImpl implements ComputerPartService {
     private void updateComputerBuildCost(ComputerBuild computerBuild, ComputerPart oldComputerPart, ComputerPart newComputerPart) {
         // ensure the computer build's price is updated before persisting to the db.
         double totalPrice = computerBuild.getTotalPrice();
-        totalPrice -= (oldComputerPart.getPrice() - newComputerPart.getPrice());
+        totalPrice -= subtractValues(oldComputerPart.getPrice(), newComputerPart.getPrice());
         computerBuild.setTotalPrice(totalPrice);
 
         // update the computer build and link the new computer part to it.
