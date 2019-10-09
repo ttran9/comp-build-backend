@@ -32,7 +32,7 @@ public class ProductionBootstrapData extends AbstractBootStrapData {
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        removeAllUsers();
+//        removeAllUsers();
 
         if(checkUsers()) {
             createUsers();
