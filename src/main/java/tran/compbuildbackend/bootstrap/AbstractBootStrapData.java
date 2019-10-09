@@ -2,11 +2,8 @@ package tran.compbuildbackend.bootstrap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
-import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.stereotype.Component;
-import tran.compbuildbackend.constants.tests.TestUtility;
 import tran.compbuildbackend.domain.computerbuild.*;
 import tran.compbuildbackend.domain.user.ApplicationUser;
 import tran.compbuildbackend.domain.utility.DateUtility;
@@ -21,42 +18,44 @@ import java.util.List;
 
 import static tran.compbuildbackend.constants.computerbuild.ComputerBuildConstants.*;
 import static tran.compbuildbackend.constants.tests.TestUtility.*;
+import static tran.compbuildbackend.constants.tests.TestUtility.SECOND_TEST_BUILD_DESCRIPTION;
 import static tran.compbuildbackend.constants.users.UserConstants.*;
+import static tran.compbuildbackend.constants.users.UserConstants.USER_PASSWORD;
 import static tran.compbuildbackend.controllers.utility.WebUtility.logUserIn;
 import static tran.compbuildbackend.controllers.utility.WebUtility.logUserOut;
 
-@Component
-@Profile(TestUtility.TEST_PROFILE)
-public class BootstrapData implements ApplicationListener<ContextRefreshedEvent> {
-    private ApplicationUserService applicationUserService;
-    private ComputerBuildService computerBuildService;
+public abstract class AbstractBootStrapData implements ApplicationListener<ContextRefreshedEvent> {
+    protected ApplicationUserService applicationUserService;
+
+    protected ComputerBuildService computerBuildService;
 
     @Autowired
-    private AuthenticationManager authenticationManager;
+    protected AuthenticationManager authenticationManager;
 
     @Autowired
-    private JwtTokenProvider jwtTokenProvider;
+    protected JwtTokenProvider jwtTokenProvider;
 
     @Autowired
-    private ApplicationUserAuthenticationService authenticationService;
+    protected ApplicationUserAuthenticationService authenticationService;
 
     @Autowired
-    private ComputerPartService computerPartService;
+    protected ComputerPartService computerPartService;
 
     @Autowired
-    private DirectionService directionService;
+    protected DirectionService directionService;
 
     @Autowired
-    private BuildNoteService buildNoteService;
+    protected BuildNoteService buildNoteService;
 
     @Autowired
-    private PurposeService purposeService;
+    protected PurposeService purposeService;
 
     @Autowired
-    private OverclockingNoteService overclockingNoteService;
+    protected OverclockingNoteService overclockingNoteService;
 
-    @Autowired
-    public BootstrapData(ApplicationUserService applicationUserService, ComputerBuildService computerBuildService) {
+    public AbstractBootStrapData() { }
+
+    public AbstractBootStrapData(ApplicationUserService applicationUserService, ComputerBuildService computerBuildService) {
         this.applicationUserService = applicationUserService;
         this.computerBuildService = computerBuildService;
     }
@@ -67,7 +66,7 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
         createSampleBuilds();
     }
 
-    private void createSampleBuilds() {
+    protected void createSampleBuilds() {
         LoginRequest loginRequest = new LoginRequest(ANOTHER_USER_NAME_TO_CREATE_NEW_USER, USER_PASSWORD);
         logUserIn(authenticationService, authenticationManager, jwtTokenProvider, loginRequest);
         createSampleComputerBuilds();
@@ -76,7 +75,7 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
         createComputerBuildsWithNoDetails();
     }
 
-    private void createUsers() {
+    protected void createUsers() {
         // create a user that is enabled
         ApplicationUser user = createUser(USER_NAME_ONE, USER_ONE_EMAIL, USER_PASSWORD, FULL_NAME_ONE);
 
@@ -117,7 +116,7 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
 
     }
 
-    private ApplicationUser createUser(String userName, String email, String password, String fullName) {
+    protected ApplicationUser createUser(String userName, String email, String password, String fullName) {
         ApplicationUser user = new ApplicationUser();
         user.setUsername(userName);
         user.setEmail(email);
@@ -126,7 +125,7 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
         return user;
     }
 
-    private void createSampleComputerBuilds() {
+    protected void createSampleComputerBuilds() {
         List<Direction> budgetDirections = new LinkedList<>();
         addDirections(budgetDirections, BUDGET_FIRST_DIRECTION_DESCRIPTION);
         addDirections(budgetDirections, BUDGET_SECOND_DIRECTION_DESCRIPTION);
@@ -208,7 +207,7 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
                 new LinkedList<>(), new LinkedList<>(), new LinkedList<>());
     }
 
-    private void addOverclockingNotes(List<OverclockingNote> overclockingNotes, String description, int priority) {
+    protected void addOverclockingNotes(List<OverclockingNote> overclockingNotes, String description, int priority) {
         OverclockingNote overclockingNote = new OverclockingNote();
         overclockingNote.setDescription(description);
         overclockingNote.setPriority(priority);
@@ -219,7 +218,7 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
         overclockingNoteService.create(computerBuild.getBuildIdentifier(), overclockingNote);
     }
 
-    private void addPurpose(List<Purpose> purposeList, String description, int priority) {
+    protected void addPurpose(List<Purpose> purposeList, String description, int priority) {
         Purpose purpose = new Purpose();
         purpose.setDescription(description);
         purpose.setPriority(priority);
@@ -230,7 +229,7 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
         purposeService.create(computerBuild.getBuildIdentifier(), purpose);
     }
 
-    private void addBuildNotes(List<BuildNote> buildNotes, String description, int priority) {
+    protected void addBuildNotes(List<BuildNote> buildNotes, String description, int priority) {
         BuildNote buildNote = new BuildNote();
         buildNote.setDescription(description);
         buildNote.setPriority(priority);
@@ -243,8 +242,8 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
 
 
 
-    private void addComputerParts(List<ComputerPart> computerParts, String partName, double partPrice,
-                                                String partPurchaseLocation, String partOtherNotes, String purchaseDate) {
+    protected void addComputerParts(List<ComputerPart> computerParts, String partName, double partPrice,
+                                  String partPurchaseLocation, String partOtherNotes, String purchaseDate) {
         ComputerPart gamingComputerPart = new ComputerPart();
         gamingComputerPart.setName(partName);
         gamingComputerPart.setPrice(partPrice);
@@ -255,7 +254,7 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
     }
 
 
-    private void createSampleComputerBuild(String computerBuildName, String computerBuildDescription, List<Direction> directions,
+    protected void createSampleComputerBuild(String computerBuildName, String computerBuildDescription, List<Direction> directions,
                                            List<ComputerPart> computerParts, List<OverclockingNote> overclockingNotes,
                                            List<Purpose> purposeList, List<BuildNote> buildNotes) {
         ComputerBuild computerBuild = new ComputerBuild();
@@ -284,15 +283,13 @@ public class BootstrapData implements ApplicationListener<ContextRefreshedEvent>
         for(BuildNote buildNote : buildNotes) {
             createBuildNote(computerBuild, buildNote);
         }
-
-
     }
 
     private void createDirections(ComputerBuild computerBuild, Direction direction) {
         directionService.create(computerBuild.getBuildIdentifier(), direction);
     }
 
-    private void addDirections(List<Direction> directions, String description) {
+    protected void addDirections(List<Direction> directions, String description) {
         Direction direction = new Direction();
         direction.setDescription(description);
         directions.add(direction);
