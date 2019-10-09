@@ -5,9 +5,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.test.annotation.IfProfileValue;
 import org.springframework.test.context.junit4.SpringRunner;
 import tran.compbuildbackend.constants.tests.TestUtility;
 import tran.compbuildbackend.controllers.utility.WebUtility;
@@ -26,7 +26,7 @@ import static tran.compbuildbackend.constants.tests.TestUtility.*;
 import static tran.compbuildbackend.constants.users.UserConstants.*;
 import static tran.compbuildbackend.domain.utility.ComputerBuildUtility.createComputerBuild;
 
-@Profile(TestUtility.TEST_PROFILE)
+@IfProfileValue(name = PROFILES_ACTIVE_STRING, value = TestUtility.TEST_PROFILE)
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ComputerBuildServiceImplTest {

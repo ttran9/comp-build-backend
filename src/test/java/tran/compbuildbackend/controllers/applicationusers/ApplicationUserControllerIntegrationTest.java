@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.annotation.IfProfileValue;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import tran.compbuildbackend.constants.tests.TestUtility;
 import tran.compbuildbackend.controllers.utility.WebUtility;
@@ -26,9 +28,10 @@ import static tran.compbuildbackend.constants.fields.FieldValueConstants.*;
 import static tran.compbuildbackend.constants.mapping.MappingConstants.*;
 import static tran.compbuildbackend.constants.messages.ResponseMessage.*;
 import static tran.compbuildbackend.constants.tests.TestUtility.BASE_URL;
+import static tran.compbuildbackend.constants.tests.TestUtility.PROFILES_ACTIVE_STRING;
 import static tran.compbuildbackend.constants.users.UserConstants.*;
 
-@Profile(TestUtility.TEST_PROFILE)
+@IfProfileValue(name = PROFILES_ACTIVE_STRING, value = TestUtility.TEST_PROFILE)
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ApplicationUserControllerIntegrationTest {

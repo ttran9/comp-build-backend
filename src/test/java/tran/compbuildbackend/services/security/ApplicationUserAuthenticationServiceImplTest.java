@@ -5,11 +5,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.test.annotation.IfProfileValue;
 import org.springframework.test.context.junit4.SpringRunner;
 import tran.compbuildbackend.constants.tests.TestUtility;
 import tran.compbuildbackend.payload.email.JWTLoginSuccessResponse;
@@ -18,10 +18,11 @@ import tran.compbuildbackend.security.JwtTokenProvider;
 
 import static org.junit.Assert.*;
 import static tran.compbuildbackend.constants.tests.TestUtility.INVALID_IDENTIFIER_SUFFIX;
+import static tran.compbuildbackend.constants.tests.TestUtility.PROFILES_ACTIVE_STRING;
 import static tran.compbuildbackend.constants.users.UserConstants.USER_NAME_ONE;
 import static tran.compbuildbackend.constants.users.UserConstants.USER_PASSWORD;
 
-@Profile(TestUtility.TEST_PROFILE)
+@IfProfileValue(name = PROFILES_ACTIVE_STRING, value = TestUtility.TEST_PROFILE)
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ApplicationUserAuthenticationServiceImplTest {

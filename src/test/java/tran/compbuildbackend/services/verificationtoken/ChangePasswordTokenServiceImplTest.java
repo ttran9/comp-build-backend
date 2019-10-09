@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Profile;
+import org.springframework.test.annotation.IfProfileValue;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 import tran.compbuildbackend.constants.tests.TestUtility;
@@ -19,9 +19,10 @@ import tran.compbuildbackend.repositories.users.ApplicationUserRepository;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static tran.compbuildbackend.constants.tests.TestUtility.INVALID_IDENTIFIER_SUFFIX;
+import static tran.compbuildbackend.constants.tests.TestUtility.PROFILES_ACTIVE_STRING;
 import static tran.compbuildbackend.constants.users.UserConstants.*;
 
-@Profile(TestUtility.TEST_PROFILE)
+@IfProfileValue(name = PROFILES_ACTIVE_STRING, value = TestUtility.TEST_PROFILE)
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ChangePasswordTokenServiceImplTest {
