@@ -1,6 +1,8 @@
 package tran.compbuildbackend.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import tran.compbuildbackend.domain.computerbuild.ComputerBuild;
@@ -8,8 +10,6 @@ import tran.compbuildbackend.domain.security.ChangePasswordToken;
 import tran.compbuildbackend.domain.security.EmailVerificationToken;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -18,7 +18,7 @@ import java.util.List;
 import static tran.compbuildbackend.constants.fields.FieldValueConstants.FULL_NAME_MISSING_ERROR;
 
 @Entity
-@Table(name = "User")
+@Table(name = "ApplicationUser")
 public class ApplicationUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
