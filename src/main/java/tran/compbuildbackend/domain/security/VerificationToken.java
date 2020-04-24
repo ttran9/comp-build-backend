@@ -1,10 +1,9 @@
 package tran.compbuildbackend.domain.security;
 
-
+import javax.validation.constraints.NotBlank;
 import tran.compbuildbackend.domain.user.ApplicationUser;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @MappedSuperclass

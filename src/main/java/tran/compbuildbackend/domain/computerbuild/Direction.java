@@ -1,9 +1,9 @@
 package tran.compbuildbackend.domain.computerbuild;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="Direction")
