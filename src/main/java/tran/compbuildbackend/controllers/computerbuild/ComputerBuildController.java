@@ -1,5 +1,6 @@
 package tran.compbuildbackend.controllers.computerbuild;
 
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -11,8 +12,6 @@ import tran.compbuildbackend.payload.computerbuild.ComputerBuildResponse;
 import tran.compbuildbackend.services.computerbuild.ComputerBuildService;
 import tran.compbuildbackend.services.computerbuild.mapper.ComputerBuildDtoMapper;
 import tran.compbuildbackend.validator.MapValidationErrorService;
-
-import javax.validation.Valid;
 
 import static tran.compbuildbackend.constants.mapping.MappingConstants.*;
 

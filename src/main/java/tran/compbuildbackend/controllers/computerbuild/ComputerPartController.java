@@ -1,5 +1,6 @@
 package tran.compbuildbackend.controllers.computerbuild;
 
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -9,8 +10,6 @@ import tran.compbuildbackend.payload.computerbuild.ComputerBuildDetailResponse;
 import tran.compbuildbackend.services.computerbuild.ComputerPartService;
 import tran.compbuildbackend.validator.MapValidationErrorService;
 import tran.compbuildbackend.validator.PriceValidator;
-
-import javax.validation.Valid;
 
 import static tran.compbuildbackend.constants.computerbuild.ComputerBuildConstants.COMPUTER_PART_DELETE_MESSAGE;
 import static tran.compbuildbackend.constants.mapping.MappingConstants.*;

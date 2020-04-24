@@ -1,5 +1,6 @@
 package tran.compbuildbackend.controllers.computerbuild;
 
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -8,8 +9,6 @@ import tran.compbuildbackend.domain.computerbuild.Direction;
 import tran.compbuildbackend.payload.computerbuild.ComputerBuildDetailResponse;
 import tran.compbuildbackend.services.computerbuild.DirectionService;
 import tran.compbuildbackend.validator.MapValidationErrorService;
-
-import javax.validation.Valid;
 
 import static tran.compbuildbackend.constants.computerbuild.ComputerBuildConstants.DIRECTION_DELETE_MESSAGE;
 import static tran.compbuildbackend.constants.mapping.MappingConstants.*;
