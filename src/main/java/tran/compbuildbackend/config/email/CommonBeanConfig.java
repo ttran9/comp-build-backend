@@ -1,4 +1,4 @@
-package tran.compbuildbackend.config;
+package tran.compbuildbackend.config.email;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -8,14 +8,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
 import java.util.Properties;
 
-import static tran.compbuildbackend.constants.security.SecurityConstants.EMAIL_LOGIN;
-import static tran.compbuildbackend.constants.security.SecurityConstants.EMAIL_PASSWORD;
+import static tran.compbuildbackend.constants.security.SecurityConstants.*;
 
 @Configuration
 @EnableJpaRepositories("tran.compbuildbackend.repositories")
@@ -28,11 +23,11 @@ public class CommonBeanConfig {
     @Bean(name = "mailSender")
     public JavaMailSender javaMailService() {
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-        javaMailSender.setHost("smtp.gmail.com");
+        javaMailSender.setHost(EMAIL_HOST);
         javaMailSender.setPort(587);
         javaMailSender.setProtocol("smtp");
-        javaMailSender.setUsername(EMAIL_LOGIN);
-        javaMailSender.setPassword(EMAIL_PASSWORD);
+        javaMailSender.setUsername(EMAIL_SENDER_LOGIN);
+        javaMailSender.setPassword(EMAIL_SENDER_PASSWORD);
 
         Properties mailProperties = new Properties();
         mailProperties.put("mail.smtp.auth", "true");
