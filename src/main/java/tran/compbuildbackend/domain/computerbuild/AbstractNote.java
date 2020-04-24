@@ -5,13 +5,14 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-
-import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+
+import javax.persistence.*;
 import java.time.LocalDate;
+
+import static tran.compbuildbackend.constants.tests.TestUtility.FIELD_CANNOT_BE_BLANK;
 
 @MappedSuperclass
 public abstract class AbstractNote {
@@ -29,7 +30,7 @@ public abstract class AbstractNote {
     @Max(3)
     protected int priority;
 
-    @NotBlank
+    @NotBlank(message=FIELD_CANNOT_BE_BLANK)
     @Lob
     protected String description;
 
