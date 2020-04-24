@@ -1,5 +1,6 @@
 package tran.compbuildbackend.controllers.computerbuild;
 
+import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -8,8 +9,6 @@ import tran.compbuildbackend.domain.computerbuild.OverclockingNote;
 import tran.compbuildbackend.payload.computerbuild.ComputerBuildDetailResponse;
 import tran.compbuildbackend.services.computerbuild.OverclockingNoteService;
 import tran.compbuildbackend.validator.MapValidationErrorService;
-
-import javax.validation.Valid;
 
 import static tran.compbuildbackend.constants.computerbuild.ComputerBuildConstants.OVERCLOCKING_NOTE_DELETE_MESSAGE;
 import static tran.compbuildbackend.constants.mapping.MappingConstants.*;
@@ -29,7 +28,7 @@ public class OverclockingNoteController {
 
     @PostMapping(BUILD_IDENTIFIER_PATH_VARIABLE)
     public ResponseEntity<?> createOverclockingNote(@Valid @RequestBody OverclockingNote overclockingNote, BindingResult bindingResult,
-                                             @PathVariable String buildIdentifier) {
+                                                    @PathVariable String buildIdentifier) {
         mapValidationErrorService.outputCustomError(bindingResult);
 
         // no errors so create the overclocking note.

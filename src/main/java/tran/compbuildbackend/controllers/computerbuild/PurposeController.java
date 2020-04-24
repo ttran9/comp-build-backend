@@ -29,7 +29,7 @@ public class PurposeController {
 
     @PostMapping(BUILD_IDENTIFIER_PATH_VARIABLE)
     public ResponseEntity<?> createPurpose(@Valid @RequestBody Purpose purpose, BindingResult bindingResult,
-                                                    @PathVariable String buildIdentifier) {
+                                           @PathVariable String buildIdentifier) {
         mapValidationErrorService.outputCustomError(bindingResult);
 
         // no errors so create the purpose.
