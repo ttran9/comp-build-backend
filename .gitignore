@@ -29,3 +29,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+### helper scripts ###
+create_war.sh
+create_war_local.sh
