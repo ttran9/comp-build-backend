@@ -1,8 +1,7 @@
 package tran.compbuildbackend.dto.user;
 
-import tran.compbuildbackend.domain.security.VerificationToken;
-
 import javax.validation.constraints.NotBlank;
+import tran.compbuildbackend.domain.security.VerificationToken;
 
 import static tran.compbuildbackend.constants.fields.FieldValueConstants.FULL_NAME_MISSING_ERROR;
 
