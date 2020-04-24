@@ -1,6 +1,37 @@
 package tran.compbuildbackend.constants.mapping;
 
+import org.json.simple.JSONObject;
+import org.springframework.stereotype.Component;
+import tran.compbuildbackend.config.config.ConfigReader;
+
+import static tran.compbuildbackend.constants.config.ConfigurationConstants.CONFIGURATION_FILE_LOCATION;
+
+@Component
 public class MappingConstants {
+
+    public MappingConstants() {
+        initializeData();
+    }
+
+    private void initializeData() {
+        ConfigReader reader = new ConfigReader();
+        JSONObject jsonObject = reader.getBackendConfigurationContent(CONFIGURATION_FILE_LOCATION);
+        String appURL = reader.getContentFromKey(jsonObject, FRONT_END_APP_URL_KEY);
+        FRONT_END_APP_URL = appURL != null ? appURL : "http://localhost:3000";
+        String appURLTwo = reader.getContentFromKey(jsonObject, FRONT_END_APP_URL_KEY_TWO);
+        FRONT_END_APP_URL_TWO = appURLTwo != null ? appURL : "http://localhost:3000";
+        String appURLThree = reader.getContentFromKey(jsonObject, FRONT_END_APP_URL_KEY_THREE);
+        FRONT_END_APP_URL_THREE = appURLThree != null ? appURL : "http://localhost:3000";
+        String appURLFour = reader.getContentFromKey(jsonObject, FRONT_END_APP_URL_KEY_FOUR);
+        FRONT_END_APP_URL_FOUR = appURLFour != null ? appURL : "http://localhost:3000";
+        System.out.println("for origin will remove START");
+        System.out.println(FRONT_END_APP_URL);
+        System.out.println(FRONT_END_APP_URL_TWO);
+        System.out.println(FRONT_END_APP_URL_THREE);
+        System.out.println(FRONT_END_APP_URL_FOUR);
+        System.out.println("for origin will remove END");
+        FRONT_END_MAPPING = FRONT_END_APP_URL + URL_SEPARATOR;
+    }
 
     public static final String URLS_REGEX = "^\\/[a-zA-Z]+\\/{0,1}$";
     public static final String PB_UPT_REGEX = "\\/[a-zA-Z0-9]+\\/[a-zA-Z0-9]{1,25}";
@@ -9,8 +40,17 @@ public class MappingConstants {
     public static final String URL_SEPARATOR = "/";
 
     // front end mapping
-    public static final String FRONT_END_APP_URL = System.getenv("APP_URL");
-    public static final String FRONT_END_MAPPING = FRONT_END_APP_URL + URL_SEPARATOR;
+    public static String FRONT_END_APP_URL = null;
+    public static String FRONT_END_APP_URL_TWO = null;
+    public static String FRONT_END_APP_URL_THREE = null;
+    public static String FRONT_END_APP_URL_FOUR = null;
+//    public static String FRONT_END_APP_URL = System.getenv("APP_URL");
+//    public static String FRONT_END_APP_URL = "http://localhost:3000";
+    public static final String FRONT_END_APP_URL_KEY = "APP_URL";
+    public static final String FRONT_END_APP_URL_KEY_TWO = "APP_URL_TWO";
+    public static final String FRONT_END_APP_URL_KEY_THREE = "APP_URL_THREE";
+    public static final String FRONT_END_APP_URL_KEY_FOUR = "APP_URL_FOUR";
+    public static String FRONT_END_MAPPING = null;
 
     // ApplicationUserController
     public static final String CONFIRM_REGISTRATION_ENDPOINT = "confirmRegistration/";

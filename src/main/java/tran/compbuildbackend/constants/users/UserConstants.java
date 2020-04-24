@@ -1,12 +1,32 @@
 package tran.compbuildbackend.constants.users;
 
+import org.json.simple.JSONObject;
+import org.springframework.stereotype.Component;
+import tran.compbuildbackend.config.config.ConfigReader;
+
+import static tran.compbuildbackend.constants.config.ConfigurationConstants.CONFIGURATION_FILE_LOCATION;
+
+@Component
 public class UserConstants {
+
+    public UserConstants() {
+        initializeData();
+    }
+
+    private void initializeData() {
+        ConfigReader reader = new ConfigReader();
+        JSONObject jsonObject = reader.getBackendConfigurationContent(CONFIGURATION_FILE_LOCATION);
+        String userPassword = reader.getContentFromKey(jsonObject, USER_PASSWORD_KEY);
+        USER_PASSWORD = userPassword != null ? userPassword : "password";
+    }
+
+    public static String USER_PASSWORD = null;
     private static final String USER_PASSWORD_KEY = "SAMPLE_PASSWORD";
+//    public static String USER_PASSWORD = System.getenv(USER_PASSWORD_KEY) != null ? System.getenv(USER_PASSWORD_KEY) : "password";
 
     public static final String USER_NAME_ONE = "toddtran10";
     public static final String USER_ONE_EMAIL = "toddtran10@gmail.com";
     public static final String FULL_NAME_ONE = "Dwight Schrute";
-    public static final String USER_PASSWORD = System.getenv(USER_PASSWORD_KEY) != null ? System.getenv(USER_PASSWORD_KEY) : "password";
 
     public static final String USER_NAME_TWO = "wptran58";
     public static final String USER_TWO_EMAIL = "wptran58@gmail.com";
