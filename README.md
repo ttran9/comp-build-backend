@@ -10,10 +10,9 @@
 
 - Some issues I ran into while trying to deploy:
   - An on-going issue I have is that I am trying to process both www.compbuild.toddtran.com and compbuild.toddtran.com
-  and I have tried to follow the CORS configuration but have not been able to get it working.
+  and I have tried to follow the CORS configuration [documentation here](https://docs.spring.io/spring-security/site/docs/current/reference/html5/#cors) 
+  but have not been able to get it working and I will continue to try to create a configuration that works.
     - My current work-around for this is just to allow all origins but I realize this configuration is less secure.
-    - I have tried to reference this [documentation here](https://docs.spring.io/spring-security/site/docs/current/reference/html5/#cors)
-    but I will continue to work on this issue.
   - At first I was attempting to directly use tomcat so I decided to use apache to proxy requests to the back-end api.
   - I also was using gmail to send the registration confirmation emails as well as the change password emails but I found
   that this had issues from time to time so I decided to use sendgrid as it presents me with less issues but I realize a
