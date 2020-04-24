@@ -1,4 +1,4 @@
-# Comp-Build-FrontEnd
+# Comp-Build-BackEnd
 
 - This will house the code for the backend.
   - I have decided to split the app up into individual repositories as this would be more practical.
@@ -9,8 +9,15 @@
 
 
 - Some issues I ran into while trying to deploy:
-  - So I was getting an issue with an improper CORS configuration and I found [this](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-cors-global-java)
-  to be a very helpful reference.
+  - An on-going issue I have is that I am trying to process both www.compbuild.toddtran.com and compbuild.toddtran.com
+  and I have tried to follow the CORS configuration but have not been able to get it working.
+    - My current work-around for this is just to allow all origins but I realize this configuration is less secure.
+    - I have tried to reference this [documentation here](https://docs.spring.io/spring-security/site/docs/current/reference/html5/#cors)
+    but I will continue to work on this issue.
+  - At first I was attempting to directly use tomcat so I decided to use apache to proxy requests to the back-end api.
+  - I also was using gmail to send the registration confirmation emails as well as the change password emails but I found
+  that this had issues from time to time so I decided to use sendgrid as it presents me with less issues but I realize a
+  limitation is that I am only allowed 100 emails a day.    
 
 - Demo
-  - A running demo for the front-end web application that utilizes this back-end API can be seen [here](https://todd-comp-build-frontend.herokuapp.com)
+  - A running demo for the front-end web application that utilizes this back-end API can be seen [here](https://www.compbuild.toddtran.com/)
