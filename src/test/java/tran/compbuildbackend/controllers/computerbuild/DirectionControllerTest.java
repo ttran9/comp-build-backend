@@ -32,7 +32,7 @@ import static tran.compbuildbackend.controllers.utility.WebUtility.loginHelper;
 import static tran.compbuildbackend.domain.utility.ComputerBuildDetailUtility.*;
 import static tran.compbuildbackend.domain.utility.DirectionUtility.getDirectionAsJson;
 
-@IfProfileValue(name = PROFILES_ACTIVE_STRING, value = TestUtility.TEST_PROFILE)
+//@IfProfileValue(name = PROFILES_ACTIVE_STRING, value = TestUtility.TEST_PROFILE)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @RunWith(SpringRunner.class)
 public class DirectionControllerTest {

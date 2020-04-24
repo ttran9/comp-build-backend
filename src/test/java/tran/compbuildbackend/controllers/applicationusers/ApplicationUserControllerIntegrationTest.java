@@ -31,7 +31,7 @@ import static tran.compbuildbackend.constants.tests.TestUtility.BASE_URL;
 import static tran.compbuildbackend.constants.tests.TestUtility.PROFILES_ACTIVE_STRING;
 import static tran.compbuildbackend.constants.users.UserConstants.*;
 
-@IfProfileValue(name = PROFILES_ACTIVE_STRING, value = TestUtility.TEST_PROFILE)
+//@IfProfileValue(name = PROFILES_ACTIVE_STRING, value = TestUtility.TEST_PROFILE)
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ApplicationUserControllerIntegrationTest {

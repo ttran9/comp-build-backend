@@ -22,7 +22,7 @@ import static tran.compbuildbackend.constants.tests.TestUtility.INVALID_IDENTIFI
 import static tran.compbuildbackend.constants.tests.TestUtility.PROFILES_ACTIVE_STRING;
 import static tran.compbuildbackend.constants.users.UserConstants.*;
 
-@IfProfileValue(name = PROFILES_ACTIVE_STRING, value = TestUtility.TEST_PROFILE)
+//@IfProfileValue(name = PROFILES_ACTIVE_STRING, value = TestUtility.TEST_PROFILE)
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class EmailVerificationTokenServiceImplTest {

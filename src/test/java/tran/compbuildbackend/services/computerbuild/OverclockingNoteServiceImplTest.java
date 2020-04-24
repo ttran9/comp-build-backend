@@ -1,5 +1,6 @@
 package tran.compbuildbackend.services.computerbuild;
 
+import javax.validation.ConstraintViolationException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +23,6 @@ import tran.compbuildbackend.repositories.users.ApplicationUserRepository;
 import tran.compbuildbackend.security.JwtTokenProvider;
 import tran.compbuildbackend.services.security.ApplicationUserAuthenticationService;
 
-import javax.validation.ConstraintViolationException;
 
 import static org.junit.Assert.*;
 import static tran.compbuildbackend.constants.computerbuild.ComputerBuildConstants.DEFAULT_PRIORITY;
@@ -34,7 +34,7 @@ import static tran.compbuildbackend.controllers.utility.WebUtility.logUserOut;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-@IfProfileValue(name = PROFILES_ACTIVE_STRING, value = TestUtility.TEST_PROFILE)
+//@IfProfileValue(name = PROFILES_ACTIVE_STRING, value = TestUtility.TEST_PROFILE)
 public class OverclockingNoteServiceImplTest {
 
     private OverclockingNoteService overclockingNoteService;

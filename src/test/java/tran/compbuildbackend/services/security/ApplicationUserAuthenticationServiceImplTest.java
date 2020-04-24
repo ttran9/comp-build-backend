@@ -22,7 +22,7 @@ import static tran.compbuildbackend.constants.tests.TestUtility.PROFILES_ACTIVE_
 import static tran.compbuildbackend.constants.users.UserConstants.USER_NAME_ONE;
 import static tran.compbuildbackend.constants.users.UserConstants.USER_PASSWORD;
 
-@IfProfileValue(name = PROFILES_ACTIVE_STRING, value = TestUtility.TEST_PROFILE)
+//@IfProfileValue(name = PROFILES_ACTIVE_STRING, value = TestUtility.TEST_PROFILE)
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ApplicationUserAuthenticationServiceImplTest {
