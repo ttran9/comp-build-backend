@@ -17,12 +17,6 @@ public class RegistrationEmailListener implements ApplicationListener<OnRegistra
     @Autowired
     private EmailVerificationTokenServiceImpl emailVerificationTokenService;
 
-    @Autowired
-    private JavaMailSender mailSender;
-
-    @Autowired
-    private MessageSource messageSource;
-
     @Override
     public void onApplicationEvent(OnRegistrationSuccessEvent event) {
         this.confirmRegistration(event);
@@ -31,8 +25,8 @@ public class RegistrationEmailListener implements ApplicationListener<OnRegistra
     private void confirmRegistration(OnRegistrationSuccessEvent event) {
         try {
             String subject = "Confirm Registration";
-            EventUtil.sendEmail(event, emailVerificationTokenService, messageSource, REGISTRATION_SUCCESS_CONFIRMATION,
-                    mailSender, subject, CONFIRM_REGISTRATION_ENDPOINT);
+            EventUtil.sendEmail(event, emailVerificationTokenService, REGISTRATION_SUCCESS_CONFIRMATION,
+                    subject, CONFIRM_REGISTRATION_ENDPOINT);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             throw new UsernameNotFoundException("account cannot be created at this time");

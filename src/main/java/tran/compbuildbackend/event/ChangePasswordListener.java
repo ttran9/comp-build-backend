@@ -9,20 +9,16 @@ import tran.compbuildbackend.event.utility.EventUtil;
 import tran.compbuildbackend.services.verificationtoken.ChangePasswordTokenServiceImpl;
 
 import static tran.compbuildbackend.constants.email.EmailConstants.PASSWORD_CHANGE_REQUEST;
+import static tran.compbuildbackend.constants.email.EmailConstants.REGISTRATION_SUCCESS_CONFIRMATION;
 import static tran.compbuildbackend.constants.exception.ExceptionConstants.PASSWORD_CANNOT_BE_CHANGED;
 import static tran.compbuildbackend.constants.mapping.MappingConstants.CHANGE_PASSWORD_ENDPOINT;
+import static tran.compbuildbackend.constants.mapping.MappingConstants.CONFIRM_REGISTRATION_ENDPOINT;
 import static tran.compbuildbackend.exceptions.ExceptionUtility.throwPasswordException;
 
 @Component
 public class ChangePasswordListener implements ApplicationListener<OnPasswordResetRequestEvent> {
     @Autowired
     private ChangePasswordTokenServiceImpl changePasswordTokenService;
-
-    @Autowired
-    private JavaMailSender mailSender;
-
-    @Autowired
-    private MessageSource messageSource;
 
     @Override
     public void onApplicationEvent(OnPasswordResetRequestEvent event) {
@@ -32,7 +28,7 @@ public class ChangePasswordListener implements ApplicationListener<OnPasswordRes
     private void changePasswordRequest(OnPasswordResetRequestEvent event) {
         try {
             String subject = "Change Password";
-            EventUtil.sendEmail(event, changePasswordTokenService, messageSource, PASSWORD_CHANGE_REQUEST, mailSender,
+            EventUtil.sendEmail(event, changePasswordTokenService, PASSWORD_CHANGE_REQUEST,
                     subject, CHANGE_PASSWORD_ENDPOINT);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
