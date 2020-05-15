@@ -1,5 +1,9 @@
 # Comp-Build-BackEnd
 
+- Demo
+  - A running demo for the front-end web application that utilizes this back-end API can be seen [here](https://www.compbuild.toddtran.com/)
+  - This is hosted on Linode. It was previously hosted on an AWS EC2 instance.
+
 - This will house the code for the backend.
   - I have decided to split the app up into individual repositories as this would be more practical.
     - My former implementation (taken from a Udemy course and likely done for simplicity) was to have the frontend
@@ -17,6 +21,3 @@
   - I also was using gmail to send the registration confirmation emails as well as the change password emails but I found
   that this had issues from time to time so I decided to use sendgrid as it presents me with less issues but I realize a
   limitation is that I am only allowed 100 emails a day.    
-
-- Demo
-  - A running demo for the front-end web application that utilizes this back-end API can be seen [here](https://www.compbuild.toddtran.com/)
