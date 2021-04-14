@@ -15,23 +15,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.header.writers.StaticHeadersWriter;
-import org.springframework.security.web.session.SessionManagementFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-//import org.springframework.web.filter.CorsFilter;
-import org.springframework.web.filter.CorsFilter;
 import tran.compbuildbackend.constants.security.SecurityConstants;
 import tran.compbuildbackend.filters.RedirectToIndexFilter;
 import tran.compbuildbackend.security.JwtAuthenticationFilter;
 import tran.compbuildbackend.services.security.CustomUserDetailsService;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
-import java.util.List;
-
-import static java.util.Collections.singletonList;
 import static tran.compbuildbackend.constants.mapping.MappingConstants.*;
 
 @Configuration
@@ -76,72 +63,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManager();
     }
 
-//    @Bean
-//    CorsConfigurationSource corsConfigurationSource() {
-//        return new CorsConfigurationSource() {
-//            @Override
-//            public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
-//                return new CorsConfiguration().applyPermitDefaultValues();
-//            }
-//        };
-//    }
-
-//    @Bean
-//    public CorsFilter corsFilter() {
-//        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        final CorsConfiguration config = new CorsConfiguration();
-//        config.setAllowCredentials(true);
-//        config.addAllowedOrigin("*");
-//        config.addAllowedHeader("*");
-//        config.addAllowedMethod("OPTIONS");
-//        config.addAllowedMethod("HEAD");
-//        config.addAllowedMethod("GET");
-//        config.addAllowedMethod("PUT");
-//        config.addAllowedMethod("POST");
-//        config.addAllowedMethod("DELETE");
-//        config.addAllowedMethod("PATCH");
-//        source.registerCorsConfiguration("/**", config);
-//        return new CorsFilter(source);
-//    }
-
-
-    //This can be customized as required
-//    private CorsConfigurationSource corsConfigurationSource() {
-//        CorsConfiguration configuration = new CorsConfiguration();
-//        List<String> allowOrigins = Arrays.asList("*");
-//        configuration.setAllowedOrigins(allowOrigins);
-//        configuration.setAllowedMethods(singletonList("*"));
-//        configuration.setAllowedHeaders(singletonList("*"));
-//        //in case authentication is enabled this flag MUST be set, otherwise CORS requests will fail
-//        configuration.setAllowCredentials(true);
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", configuration);
-//        return source;
-//    }
-
-//    @Bean
-//    CorsFilter corsFilter() {
-//        return new CorsFilter();
-//    }
-
-//    @Bean
-//    CorsFilter corsFilter() {
-//        return new CBCorsFilter();
-//    }
-
-//    @Bean
-//    CorsConfigurationSource corsConfigurationSource() {
-//        CorsConfiguration configuration = new CorsConfiguration();
-//        configuration.setAllowCredentials(true);
-//        configuration.setAllowedOrigins(Arrays.asList(FRONT_END_APP_URL, FRONT_END_APP_URL_TWO, FRONT_END_APP_URL_THREE, FRONT_END_APP_URL_FOUR));
-//        configuration.setAllowedMethods(Arrays.asList(String.valueOf(HttpMethod.PATCH), String.valueOf(HttpMethod.DELETE),
-//                String.valueOf(HttpMethod.POST), String.valueOf(HttpMethod.GET)));
-//        configuration.setAllowedHeaders(Arrays.asList("X-Requested-With", "Origin", "Content-Type", "Accept", "Authorization",
-//                "Access-Control-Allow-Origin", "Access-Control-Allow-Headers"));
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", configuration);
-//        return source;
-//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
