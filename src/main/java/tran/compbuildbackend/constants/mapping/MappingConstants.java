@@ -18,18 +18,6 @@ public class MappingConstants {
         JSONObject jsonObject = reader.getBackendConfigurationContent(CONFIGURATION_FILE_LOCATION);
         String appURL = reader.getContentFromKey(jsonObject, FRONT_END_APP_URL_KEY);
         FRONT_END_APP_URL = appURL != null ? appURL : "http://localhost:3000";
-        String appURLTwo = reader.getContentFromKey(jsonObject, FRONT_END_APP_URL_KEY_TWO);
-        FRONT_END_APP_URL_TWO = appURLTwo != null ? appURL : "http://localhost:3000";
-        String appURLThree = reader.getContentFromKey(jsonObject, FRONT_END_APP_URL_KEY_THREE);
-        FRONT_END_APP_URL_THREE = appURLThree != null ? appURL : "http://localhost:3000";
-        String appURLFour = reader.getContentFromKey(jsonObject, FRONT_END_APP_URL_KEY_FOUR);
-        FRONT_END_APP_URL_FOUR = appURLFour != null ? appURL : "http://localhost:3000";
-        System.out.println("for origin will remove START");
-        System.out.println(FRONT_END_APP_URL);
-        System.out.println(FRONT_END_APP_URL_TWO);
-        System.out.println(FRONT_END_APP_URL_THREE);
-        System.out.println(FRONT_END_APP_URL_FOUR);
-        System.out.println("for origin will remove END");
         FRONT_END_MAPPING = FRONT_END_APP_URL + URL_SEPARATOR;
     }
 
@@ -41,15 +29,7 @@ public class MappingConstants {
 
     // front end mapping
     public static String FRONT_END_APP_URL = null;
-    public static String FRONT_END_APP_URL_TWO = null;
-    public static String FRONT_END_APP_URL_THREE = null;
-    public static String FRONT_END_APP_URL_FOUR = null;
-//    public static String FRONT_END_APP_URL = System.getenv("APP_URL");
-//    public static String FRONT_END_APP_URL = "http://localhost:3000";
     public static final String FRONT_END_APP_URL_KEY = "APP_URL";
-    public static final String FRONT_END_APP_URL_KEY_TWO = "APP_URL_TWO";
-    public static final String FRONT_END_APP_URL_KEY_THREE = "APP_URL_THREE";
-    public static final String FRONT_END_APP_URL_KEY_FOUR = "APP_URL_FOUR";
     public static String FRONT_END_MAPPING = null;
 
     // ApplicationUserController

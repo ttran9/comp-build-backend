@@ -35,7 +35,6 @@ public class SecurityConstants {
 
     // JWT authentication related content
     public static final String SECRET_KEY = "JWT_PRIV_KEY";
-//    public static String SECRET = System.getenv("JWT_PRIV_KEY");
     public static String SECRET = null;
     public static final String TOKEN_PREFIX = "Bearer ";
     public static final String HEADER_STRING = "Authorization";
@@ -45,11 +44,8 @@ public class SecurityConstants {
     public static String EMAIL_SENDER_LOGIN = null;
     public static String EMAIL_HOST = null;
     public static final String EMAIL_HOST_KEY = "EMAIL_HOST_KEY";
-    //    public static String EMAIL_LOGIN = System.getenv("TEST_EMAIL");
     public static final String EMAIL_LOGIN_KEY = "TEST_EMAIL";
     public static String EMAIL_SENDER_PASSWORD = null;
-//    public static String EMAIL_PASSWORD = System.getenv("TEST_PASSWORD");
-//    public static String EMAIL_PASSWORD = System.getenv("TEST_EMAIL_PASSWORD");
     public static final String EMAIL_PASSWORD_KEY = "TEST_JAVA_EMAIL_PASSWORD";
     public static String EMAIL_SENDER_USERNAME = null;
     public static String EMAIL_SENDER_USERNAME_KEY = "SENDER_EMAIL";
