@@ -4,6 +4,7 @@
   - A running demo for the front-end web application that utilizes this back-end API can be seen [here](https://www.compbuild.toddtran.com/)
   - This is hosted on Linode. It was previously hosted on an AWS EC2 instance.
   - Frontend repository [here](https://github.com/ttran9/comp-build-frontend)
+  - Stand alone [API here](https://www.cb-be.toddtran.com/api/computerbuild/)
 
 - This will house the code for the backend.
   - I have decided to split the app up into individual repositories as this would be more practical.
