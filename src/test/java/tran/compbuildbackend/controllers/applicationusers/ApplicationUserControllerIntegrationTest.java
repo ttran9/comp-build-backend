@@ -248,7 +248,8 @@ public class ApplicationUserControllerIntegrationTest {
         GenericRequestExceptionResponse contents = result.getBody();
 
         assertNotNull(contents);
-        assertEquals(PASSWORD_CANNOT_BE_CHANGED_FOR_INVALID_USER, contents.getUsername());
+//        assertEquals(PASSWORD_CANNOT_BE_CHANGED_FOR_INVALID_USER, contents.getUsername());
+        assertEquals(PASSWORD_CANNOT_BE_CHANGED_FOR_INVALID_USER, contents.getMessage());
     }
 
 }

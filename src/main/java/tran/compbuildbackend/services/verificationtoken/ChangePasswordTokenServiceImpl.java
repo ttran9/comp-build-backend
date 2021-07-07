@@ -11,7 +11,7 @@ import java.util.UUID;
 
 import static tran.compbuildbackend.constants.exception.ExceptionConstants.TOKEN_IS_NOT_PRESENT;
 import static tran.compbuildbackend.constants.security.SecurityConstants.CHANGE_PASSWORD_TOKEN_TYPE;
-import static tran.compbuildbackend.exceptions.ExceptionUtility.throwPasswordException;
+import static tran.compbuildbackend.exceptions.ExceptionUtility.throwMessageException;
 
 @Service
 public class ChangePasswordTokenServiceImpl implements VerificationTokenService {
@@ -39,7 +39,7 @@ public class ChangePasswordTokenServiceImpl implements VerificationTokenService 
     public ApplicationUser validateVerificationToken(String token) {
         ChangePasswordToken changePasswordToken = getVerificationToken(token);
         if(changePasswordToken == null) {
-            throwPasswordException(TOKEN_IS_NOT_PRESENT);
+            throwMessageException(TOKEN_IS_NOT_PRESENT);
         }
         SecurityUtil.isTokenExpired(changePasswordToken, CHANGE_PASSWORD_TOKEN_TYPE);
         return changePasswordToken.getUser();

@@ -40,15 +40,6 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
         if(ex.getMessage() != null) {
             response.setMessage(ex.getMessage());
         }
-        if(ex.getUsername() != null) {
-            response.setUsername(ex.getUsername());
-        }
-        if(ex.getToken() != null) {
-            response.setToken(ex.getToken());
-        }
-        if(ex.getPassword() != null) {
-            response.setPassword(ex.getPassword());
-        }
 
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }

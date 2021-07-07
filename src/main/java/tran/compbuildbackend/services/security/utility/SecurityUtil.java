@@ -11,8 +11,7 @@ import java.time.LocalDateTime;
 import static tran.compbuildbackend.constants.exception.ExceptionConstants.TOKEN_HAS_EXPIRED;
 import static tran.compbuildbackend.constants.security.SecurityConstants.CHANGE_PASSWORD_TOKEN_TYPE;
 import static tran.compbuildbackend.constants.security.SecurityConstants.EMAIL_VERIFICATION_TOKEN_TYPE;
-import static tran.compbuildbackend.exceptions.ExceptionUtility.throwPasswordException;
-import static tran.compbuildbackend.exceptions.ExceptionUtility.throwTokenException;
+import static tran.compbuildbackend.exceptions.ExceptionUtility.throwMessageException;
 
 public class SecurityUtil {
     /*
@@ -48,9 +47,9 @@ public class SecurityUtil {
                      * originally the custom exception had fields "password" and "confirm password" showing the same error
                      * so instead this will only display the error on one field, the "password" field.
                      */
-                    throwPasswordException(TOKEN_HAS_EXPIRED);
+                    throwMessageException(TOKEN_HAS_EXPIRED);
                 case EMAIL_VERIFICATION_TOKEN_TYPE:
-                    throwTokenException(TOKEN_HAS_EXPIRED);
+                    throwMessageException(TOKEN_HAS_EXPIRED);
                 default:
                     break;
             }

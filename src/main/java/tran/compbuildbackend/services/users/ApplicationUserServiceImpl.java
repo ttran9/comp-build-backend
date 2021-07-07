@@ -111,7 +111,7 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
         // user is enabled so now delete the registration token required to register the user.
         EmailVerificationToken emailVerificationToken = emailVerificationTokenRepository.findByUser(user);
         if(emailVerificationToken == null) {
-            throwTokenException(TOKEN_IS_NOT_PRESENT);
+            throwMessageException(TOKEN_IS_NOT_PRESENT);
         }
         emailVerificationTokenRepository.deleteByToken(emailVerificationToken.getToken());
     }
@@ -125,7 +125,7 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
     public ApplicationUser getUserByEmail(String email, int exceptionType) {
         ApplicationUser user = applicationUserRepository.findByEmail(email);
         if(exceptionType == EXCEPTION_REQUEST_PASSWORD_CHANGE_FAILED && user == null) {
-            throwUsernameException(PASSWORD_CANNOT_BE_CHANGED_FOR_INVALID_USER);
+            throwMessageException(PASSWORD_CANNOT_BE_CHANGED_FOR_INVALID_USER);
         } else if(exceptionType == EXCEPTION_EMAIL_NAME_DOES_NOT_EXIST && user == null) {
             throwMessageException("cannot find user with email '" + email + "'.");
         }
@@ -155,11 +155,11 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
             ChangePasswordToken token = changePasswordTokenRepository.findByUser(user);
             if(token == null) {
                 System.out.println("token is null.....");
-                throwTokenException(CANNOT_RETRIEVE_TOKEN);
+                throwMessageException(CANNOT_RETRIEVE_TOKEN);
             }
             changePasswordTokenRepository.deleteByToken(token.getToken());
         } catch (Exception ex) {
-            throwTokenException(UNABLE_TO_CHANGE_PASSWORD);
+            throwMessageException(UNABLE_TO_CHANGE_PASSWORD);
         }
     }
 
@@ -175,7 +175,7 @@ public class ApplicationUserServiceImpl implements ApplicationUserService {
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
-            throwUsernameException("Password for '" + user.getUsername() + "' cannot be changed at this time");
+            throwMessageException("Password for '" + user.getUsername() + "' cannot be changed at this time");
         }
         ChangePasswordToken token = getChangePasswordTokenFromUser(user);
 

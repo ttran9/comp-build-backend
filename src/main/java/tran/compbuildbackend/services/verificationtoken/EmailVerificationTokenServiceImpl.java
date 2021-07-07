@@ -9,7 +9,7 @@ import tran.compbuildbackend.repositories.security.EmailVerificationTokenReposit
 import java.util.UUID;
 
 import static tran.compbuildbackend.constants.exception.ExceptionConstants.TOKEN_IS_NOT_PRESENT;
-import static tran.compbuildbackend.exceptions.ExceptionUtility.throwTokenException;
+import static tran.compbuildbackend.exceptions.ExceptionUtility.throwMessageException;
 
 @Service
 public class EmailVerificationTokenServiceImpl implements VerificationTokenService {
@@ -37,7 +37,7 @@ public class EmailVerificationTokenServiceImpl implements VerificationTokenServi
     public ApplicationUser validateVerificationToken(String token) {
         EmailVerificationToken emailVerificationToken = getVerificationToken(token);
         if(emailVerificationToken == null) {
-            throwTokenException(TOKEN_IS_NOT_PRESENT);
+            throwMessageException(TOKEN_IS_NOT_PRESENT);
         }
         /*
          * for now the email verification token is used to help the user activate their account so don't check if it
