@@ -8,6 +8,10 @@ import java.util.regex.Pattern;
 
 import static tran.compbuildbackend.constants.mapping.MappingConstants.*;
 
+/*
+ * TODO: Possibly delete.
+ * Note: The primary purpose of this was to redirect the user before I used a devServer on the React front-end.
+ */
 public class RedirectToIndexFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request,
