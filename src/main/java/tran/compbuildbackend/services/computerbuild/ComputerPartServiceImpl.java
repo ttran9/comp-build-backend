@@ -15,9 +15,9 @@ import static tran.compbuildbackend.exceptions.ExceptionUtility.throwMessageExce
 @Service
 public class ComputerPartServiceImpl implements ComputerPartService {
 
-    private ComputerPartRepository computerPartRepository;
+    private final ComputerPartRepository computerPartRepository;
 
-    private ComputerBuildRepository computerBuildRepository;
+    private final ComputerBuildRepository computerBuildRepository;
 
     public ComputerPartServiceImpl(ComputerPartRepository computerPartRepository, ComputerBuildRepository computerBuildRepository) {
         this.computerPartRepository = computerPartRepository;
@@ -29,6 +29,10 @@ public class ComputerPartServiceImpl implements ComputerPartService {
     public ComputerPart create(String buildIdentifier, ComputerPart computerPart) {
         ComputerBuild retrievedComputerBuild = ComputerBuildServiceUtility.verifyOwnerOfComputerBuild(
                 computerBuildRepository, buildIdentifier);
+
+        if(retrievedComputerBuild == null) {
+            throwMessageException(COMPUTER_BUILD_DOES_NOT_EXIST);
+        }
 
         computerPart.setUniqueIdentifier(ComputerBuildServiceUtility.generateComputerBuildDetail(
                 COMPUTER_PART_ABBREVIATION, retrievedComputerBuild));

@@ -1,21 +1,23 @@
 package tran.compbuildbackend.event;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationListener;
-import org.springframework.context.MessageSource;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import tran.compbuildbackend.event.utility.EventUtil;
-import tran.compbuildbackend.services.verificationtoken.EmailVerificationTokenServiceImpl;
+import tran.compbuildbackend.services.verificationtoken.VerificationTokenService;
 
 import static tran.compbuildbackend.constants.email.EmailConstants.REGISTRATION_SUCCESS_CONFIRMATION;
 import static tran.compbuildbackend.constants.mapping.MappingConstants.CONFIRM_REGISTRATION_ENDPOINT;
 
 @Component
 public class RegistrationEmailListener implements ApplicationListener<OnRegistrationSuccessEvent> {
-    @Autowired
-    private EmailVerificationTokenServiceImpl emailVerificationTokenService;
+
+    private final VerificationTokenService verificationTokenService;
+
+    public RegistrationEmailListener(@Qualifier("emailVerificationTokenServiceImpl") VerificationTokenService verificationTokenService) {
+        this.verificationTokenService = verificationTokenService;
+    }
 
     @Override
     public void onApplicationEvent(OnRegistrationSuccessEvent event) {
@@ -25,7 +27,7 @@ public class RegistrationEmailListener implements ApplicationListener<OnRegistra
     private void confirmRegistration(OnRegistrationSuccessEvent event) {
         try {
             String subject = "Confirm Registration";
-            EventUtil.sendEmail(event, emailVerificationTokenService, REGISTRATION_SUCCESS_CONFIRMATION,
+            EventUtil.sendEmail(event, verificationTokenService, REGISTRATION_SUCCESS_CONFIRMATION,
                     subject, CONFIRM_REGISTRATION_ENDPOINT);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

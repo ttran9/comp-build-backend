@@ -17,8 +17,8 @@ import static tran.compbuildbackend.constants.mapping.MappingConstants.*;
 @RequestMapping(DIRECTION_API)
 public class DirectionController {
 
-    private DirectionService directionService;
-    private MapValidationErrorService mapValidationErrorService;
+    private final DirectionService directionService;
+    private final MapValidationErrorService mapValidationErrorService;
 
     public DirectionController(DirectionService directionService, MapValidationErrorService mapValidationErrorService) {
         this.directionService = directionService;

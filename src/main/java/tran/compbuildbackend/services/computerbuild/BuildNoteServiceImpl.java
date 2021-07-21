@@ -13,9 +13,9 @@ import static tran.compbuildbackend.exceptions.ExceptionUtility.throwMessageExce
 @Service
 public class BuildNoteServiceImpl implements BuildNoteService {
 
-    private BuildNoteRepository buildNoteRepository;
+    private final BuildNoteRepository buildNoteRepository;
 
-    private ComputerBuildRepository computerBuildRepository;
+    private final ComputerBuildRepository computerBuildRepository;
 
     public BuildNoteServiceImpl(BuildNoteRepository buildNoteRepository, ComputerBuildRepository computerBuildRepository) {
         this.buildNoteRepository = buildNoteRepository;

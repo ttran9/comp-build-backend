@@ -15,10 +15,7 @@ import static tran.compbuildbackend.constants.security.SecurityConstants.*;
 @Configuration
 @EnableJpaRepositories("tran.compbuildbackend.repositories")
 public class CommonBeanConfig {
-    @Bean
-    public BCryptPasswordEncoder passwordEncryptor() {
-        return new BCryptPasswordEncoder();
-    }
+
 
     @Bean(name = "mailSender")
     public JavaMailSender javaMailService() {

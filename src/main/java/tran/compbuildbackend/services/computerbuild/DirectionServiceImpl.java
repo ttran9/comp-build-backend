@@ -13,9 +13,9 @@ import static tran.compbuildbackend.exceptions.ExceptionUtility.throwMessageExce
 @Service
 public class DirectionServiceImpl implements DirectionService {
 
-    private DirectionRepository directionRepository;
+    private final DirectionRepository directionRepository;
 
-    private ComputerBuildRepository computerBuildRepository;
+    private final ComputerBuildRepository computerBuildRepository;
 
     public DirectionServiceImpl(DirectionRepository directionRepository, ComputerBuildRepository computerBuildRepository) {
         this.directionRepository = directionRepository;
@@ -28,6 +28,10 @@ public class DirectionServiceImpl implements DirectionService {
         // ensure one is the owner of the computer build that the direction is being added to.
         ComputerBuild retrievedComputerBuild = ComputerBuildServiceUtility.verifyOwnerOfComputerBuild(
                 computerBuildRepository, buildIdentifier);
+
+        if(retrievedComputerBuild == null) {
+            throwMessageException(COMPUTER_BUILD_DOES_NOT_EXIST);
+        }
 
         direction.setUniqueIdentifier(ComputerBuildServiceUtility.generateComputerBuildDetail(
                 DIRECTION_ABBREVIATION, retrievedComputerBuild));

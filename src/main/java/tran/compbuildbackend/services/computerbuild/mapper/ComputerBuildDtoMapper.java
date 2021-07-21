@@ -16,10 +16,10 @@ import java.util.List;
 @Component
 public class ComputerBuildDtoMapper {
 
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
-    public ComputerBuildDtoMapper() {
-        modelMapper = new ModelMapper();
+    public ComputerBuildDtoMapper(ModelMapper modelMapper) {
+        this.modelMapper = modelMapper;
     }
 
     public ComputerBuildDto computerBuildToComputerBuildDto(ComputerBuild computerBuild) {

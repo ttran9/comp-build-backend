@@ -17,9 +17,9 @@ import static tran.compbuildbackend.constants.mapping.MappingConstants.*;
 @RequestMapping(OVERCLOCKING_NOTE_API)
 public class OverclockingNoteController {
 
-    private OverclockingNoteService overclockingNoteService;
+    private final OverclockingNoteService overclockingNoteService;
 
-    private MapValidationErrorService mapValidationErrorService;
+    private final MapValidationErrorService mapValidationErrorService;
 
     public OverclockingNoteController(OverclockingNoteService overclockingNoteService, MapValidationErrorService mapValidationErrorService) {
         this.overclockingNoteService = overclockingNoteService;

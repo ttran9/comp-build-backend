@@ -13,9 +13,9 @@ import static tran.compbuildbackend.exceptions.ExceptionUtility.throwMessageExce
 @Service
 public class PurposeServiceImpl implements PurposeService {
 
-    private PurposeRepository purposeRepository;
+    private final PurposeRepository purposeRepository;
 
-    private ComputerBuildRepository computerBuildRepository;
+    private final ComputerBuildRepository computerBuildRepository;
 
     public PurposeServiceImpl(PurposeRepository purposeRepository, ComputerBuildRepository computerBuildRepository) {
         this.purposeRepository = purposeRepository;
@@ -28,6 +28,10 @@ public class PurposeServiceImpl implements PurposeService {
         // ensure one is the owner of the computer build that the purpose is being added to.
         ComputerBuild retrievedComputerBuild = ComputerBuildServiceUtility.verifyOwnerOfComputerBuild(
                 computerBuildRepository, buildIdentifier);
+
+        if(retrievedComputerBuild == null) {
+            throwMessageException(COMPUTER_BUILD_DOES_NOT_EXIST);
+        }
 
         ComputerBuildServiceUtility.setAbstractNote(retrievedComputerBuild, purpose, PURPOSE_ABBREVIATION);
 

@@ -1,6 +1,5 @@
 package tran.compbuildbackend.controllers.computerbuild;
 
-import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -10,6 +9,8 @@ import tran.compbuildbackend.payload.computerbuild.ComputerBuildDetailResponse;
 import tran.compbuildbackend.services.computerbuild.BuildNoteService;
 import tran.compbuildbackend.validator.MapValidationErrorService;
 
+import javax.validation.Valid;
+
 import static tran.compbuildbackend.constants.computerbuild.ComputerBuildConstants.BUILD_NOTE_DELETE_MESSAGE;
 import static tran.compbuildbackend.constants.mapping.MappingConstants.*;
 
@@ -17,8 +18,8 @@ import static tran.compbuildbackend.constants.mapping.MappingConstants.*;
 @RequestMapping(BUILD_NOTE_API)
 public class BuildNoteController {
 
-    private BuildNoteService buildNoteService;
-    private MapValidationErrorService mapValidationErrorService;
+    private final BuildNoteService buildNoteService;
+    private final MapValidationErrorService mapValidationErrorService;
 
     public BuildNoteController(BuildNoteService buildNoteService, MapValidationErrorService mapValidationErrorService) {
         this.buildNoteService = buildNoteService;

@@ -7,9 +7,9 @@ import java.util.Locale;
 
 public abstract class AbstractApplicationEvent extends ApplicationEvent {
     protected static final long serialVersionUID = 1L;
-    protected String appUrl;
-    protected Locale locale;
-    protected ApplicationUser user;
+    protected final String appUrl;
+    protected final Locale locale;
+    protected final ApplicationUser user;
 
     AbstractApplicationEvent(ApplicationUser user, Locale locale, String appUrl) {
         super(user);
@@ -22,23 +22,23 @@ public abstract class AbstractApplicationEvent extends ApplicationEvent {
         return appUrl;
     }
 
-    public void setAppUrl(String appUrl) {
-        this.appUrl = appUrl;
-    }
+//    public void setAppUrl(String appUrl) {
+//        this.appUrl = appUrl;
+//    }
 
     public Locale getLocale() {
         return locale;
     }
 
-    public void setLocale(Locale locale) {
-        this.locale = locale;
-    }
+//    public void setLocale(Locale locale) {
+//        this.locale = locale;
+//    }
 
     public ApplicationUser getUser() {
         return user;
     }
 
-    public void setUser(ApplicationUser user) {
-        this.user = user;
-    }
+//    public void setUser(ApplicationUser user) {
+//        this.user = user;
+//    }
 }

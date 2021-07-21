@@ -1,7 +1,5 @@
 package tran.compbuildbackend.controllers.applicationusers;
 
-import javax.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,6 +21,7 @@ import tran.compbuildbackend.validator.MapValidationErrorService;
 import tran.compbuildbackend.validator.PasswordChangeRequestValidator;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import static tran.compbuildbackend.constants.mapping.MappingConstants.*;
 import static tran.compbuildbackend.constants.messages.ResponseMessage.*;
@@ -32,25 +31,24 @@ import static tran.compbuildbackend.constants.messages.ResponseMessage.*;
 @RequestMapping(USERS_API)
 public class ApplicationUserController {
 
-    private ApplicationUserService applicationUserService;
+    private final ApplicationUserService applicationUserService;
 
-    private MapValidationErrorService mapValidationErrorService;
+    private final MapValidationErrorService mapValidationErrorService;
 
-    private ApplicationUserValidator applicationUserValidator;
+    private final ApplicationUserValidator applicationUserValidator;
 
-    private PasswordChangeRequestValidator passwordChangeRequestValidator;
+    private final PasswordChangeRequestValidator passwordChangeRequestValidator;
 
-    private JwtTokenProvider jwtTokenProvider;
+    private final JwtTokenProvider jwtTokenProvider;
 
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
-    private ApplicationUserAuthenticationService authenticationService;
+    private final ApplicationUserAuthenticationService authenticationService;
 
-    private EmailVerificationTokenServiceImpl emailVerificationService;
+    private final EmailVerificationTokenServiceImpl emailVerificationService;
 
-    private ChangePasswordTokenServiceImpl changePasswordTokenService;
+    private final ChangePasswordTokenServiceImpl changePasswordTokenService;
 
-    @Autowired
     public ApplicationUserController(ApplicationUserService applicationUserService, MapValidationErrorService mapValidationErrorService,
                                      ApplicationUserValidator applicationUserValidator, JwtTokenProvider jwtTokenProvider,
                                      AuthenticationManager authenticationManager, ApplicationUserAuthenticationService authenticationService,

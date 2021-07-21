@@ -1,6 +1,5 @@
 package tran.compbuildbackend.services.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -11,10 +10,9 @@ import tran.compbuildbackend.repositories.users.ApplicationUserRepository;
 @Service
 public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
 
-    private ApplicationUserRepository applicationUserRepository;
+    private final ApplicationUserRepository applicationUserRepository;
     private final String USER_NOT_FOUND_MESSAGE = "User not found";
 
-    @Autowired
     public CustomUserDetailsServiceImpl(ApplicationUserRepository applicationUserRepository) {
         this.applicationUserRepository = applicationUserRepository;
     }

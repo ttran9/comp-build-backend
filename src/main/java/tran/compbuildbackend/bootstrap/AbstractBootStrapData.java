@@ -25,39 +25,42 @@ import static tran.compbuildbackend.controllers.utility.WebUtility.logUserIn;
 import static tran.compbuildbackend.controllers.utility.WebUtility.logUserOut;
 
 public abstract class AbstractBootStrapData implements ApplicationListener<ContextRefreshedEvent> {
-    protected ApplicationUserService applicationUserService;
+    protected final ApplicationUserService applicationUserService;
 
-    protected ComputerBuildService computerBuildService;
+    protected final ComputerBuildService computerBuildService;
 
-    @Autowired
-    protected AuthenticationManager authenticationManager;
+    protected final AuthenticationManager authenticationManager;
 
-    @Autowired
-    protected JwtTokenProvider jwtTokenProvider;
+    protected final JwtTokenProvider jwtTokenProvider;
 
-    @Autowired
-    protected ApplicationUserAuthenticationService authenticationService;
+    protected final ApplicationUserAuthenticationService authenticationService;
 
-    @Autowired
-    protected ComputerPartService computerPartService;
+    protected final ComputerPartService computerPartService;
 
-    @Autowired
-    protected DirectionService directionService;
+    protected final DirectionService directionService;
 
-    @Autowired
-    protected BuildNoteService buildNoteService;
+    protected final BuildNoteService buildNoteService;
+
+    protected final PurposeService purposeService;
+
+    protected final OverclockingNoteService overclockingNoteService;
 
     @Autowired
-    protected PurposeService purposeService;
-
-    @Autowired
-    protected OverclockingNoteService overclockingNoteService;
-
-    public AbstractBootStrapData() { }
-
-    public AbstractBootStrapData(ApplicationUserService applicationUserService, ComputerBuildService computerBuildService) {
+    public AbstractBootStrapData(ApplicationUserService applicationUserService, ComputerBuildService computerBuildService,
+                                 AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider,
+                                 ApplicationUserAuthenticationService authenticationService, ComputerPartService computerPartService,
+                                 DirectionService directionService, BuildNoteService buildNoteService,
+                                 PurposeService purposeService, OverclockingNoteService overclockingNoteService) {
         this.applicationUserService = applicationUserService;
         this.computerBuildService = computerBuildService;
+        this.authenticationManager = authenticationManager;
+        this.jwtTokenProvider = jwtTokenProvider;
+        this.authenticationService = authenticationService;
+        this.computerPartService = computerPartService;
+        this.directionService = directionService;
+        this.buildNoteService = buildNoteService;
+        this.purposeService = purposeService;
+        this.overclockingNoteService = overclockingNoteService;
     }
 
     @Override

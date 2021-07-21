@@ -15,9 +15,9 @@ import static tran.compbuildbackend.exceptions.ExceptionUtility.throwMessageExce
 @Service
 public class ComputerBuildServiceImpl implements ComputerBuildService {
 
-    private ComputerBuildRepository computerBuildRepository;
+    private final ComputerBuildRepository computerBuildRepository;
 
-    private ApplicationUserRepository applicationUserRepository;
+    private final ApplicationUserRepository applicationUserRepository;
 
     public ComputerBuildServiceImpl(ComputerBuildRepository computerBuildRepository, ApplicationUserRepository applicationUserRepository) {
         this.computerBuildRepository = computerBuildRepository;

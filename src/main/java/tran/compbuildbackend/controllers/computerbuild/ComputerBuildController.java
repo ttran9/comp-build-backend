@@ -1,6 +1,5 @@
 package tran.compbuildbackend.controllers.computerbuild;
 
-import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -13,17 +12,19 @@ import tran.compbuildbackend.services.computerbuild.ComputerBuildService;
 import tran.compbuildbackend.services.computerbuild.mapper.ComputerBuildDtoMapper;
 import tran.compbuildbackend.validator.MapValidationErrorService;
 
+import javax.validation.Valid;
+
 import static tran.compbuildbackend.constants.mapping.MappingConstants.*;
 
 @RestController
 @RequestMapping(COMPUTER_BUILD_API)
 public class ComputerBuildController {
 
-    private MapValidationErrorService mapValidationErrorService;
+    private final MapValidationErrorService mapValidationErrorService;
 
-    private ComputerBuildService computerBuildService;
+    private final ComputerBuildService computerBuildService;
 
-    private ComputerBuildDtoMapper computerBuildDtoMapper;
+    private final ComputerBuildDtoMapper computerBuildDtoMapper;
 
     public ComputerBuildController(MapValidationErrorService mapValidationErrorService, ComputerBuildService computerBuildService,
                                    ComputerBuildDtoMapper computerBuildDtoMapper) {

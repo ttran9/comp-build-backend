@@ -1,6 +1,6 @@
 package tran.compbuildbackend.config.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -16,9 +16,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import tran.compbuildbackend.constants.security.SecurityConstants;
-import tran.compbuildbackend.filters.RedirectToIndexFilter;
 import tran.compbuildbackend.security.JwtAuthenticationFilter;
 import tran.compbuildbackend.services.security.CustomUserDetailsService;
+
 import static tran.compbuildbackend.constants.mapping.MappingConstants.*;
 
 @Configuration
@@ -33,24 +33,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /*
      * used to commence an authentication scheme.
      */
-    @Autowired
-    private AuthenticationEntryPoint authenticationEntryPoint;
+    private final AuthenticationEntryPoint authenticationEntryPoint;
 
-    @Autowired
-    private CustomUserDetailsService customUserDetailsService;
+    private final CustomUserDetailsService customUserDetailsService;
 
-    @Bean
-    public JwtAuthenticationFilter jwtAuthenticationFilter() {
-        return new JwtAuthenticationFilter();
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    public SecurityConfig(AuthenticationEntryPoint authenticationEntryPoint, CustomUserDetailsService customUserDetailsService,
+                          BCryptPasswordEncoder bCryptPasswordEncoder, JwtAuthenticationFilter jwtAuthenticationFilter) {
+        this.authenticationEntryPoint = authenticationEntryPoint;
+        this.customUserDetailsService = customUserDetailsService;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
-
-    @Bean
-    public RedirectToIndexFilter redirectToIndexFilter() {
-        return new RedirectToIndexFilter();
-    }
-
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
@@ -66,7 +63,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.addFilterBefore(corsFilter(), SessionManagementFilter.class)
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).and()
                 .sessionManagement()
@@ -92,8 +88,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PATCH, PATCH_PATHS).authenticated()
                 .antMatchers(HttpMethod.DELETE, DELETE_PATHS).authenticated()
                 .antMatchers(HttpMethod.GET, GET_PATHS).permitAll();
-        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-        http.addFilterAfter(redirectToIndexFilter(), JwtAuthenticationFilter.class);
+        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
 }

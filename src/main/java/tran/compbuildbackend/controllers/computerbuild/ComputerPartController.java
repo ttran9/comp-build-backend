@@ -18,11 +18,11 @@ import static tran.compbuildbackend.constants.mapping.MappingConstants.*;
 @RequestMapping(COMPUTER_PART_API)
 public class ComputerPartController {
 
-    private ComputerPartService computerPartService;
+    private final ComputerPartService computerPartService;
 
-    private MapValidationErrorService mapValidationErrorService;
+    private final MapValidationErrorService mapValidationErrorService;
 
-    private PriceValidator priceValidator;
+    private final PriceValidator priceValidator;
 
     public ComputerPartController(ComputerPartService computerPartService, MapValidationErrorService mapValidationErrorService,
                                   PriceValidator priceValidator) {

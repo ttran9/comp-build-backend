@@ -18,9 +18,9 @@ import static tran.compbuildbackend.constants.mapping.MappingConstants.*;
 @RequestMapping(PURPOSE_API)
 public class PurposeController {
 
-    private PurposeService purposeService;
+    private final PurposeService purposeService;
 
-    private MapValidationErrorService mapValidationErrorService;
+    private final MapValidationErrorService mapValidationErrorService;
 
     public PurposeController(PurposeService purposeService, MapValidationErrorService mapValidationErrorService) {
         this.purposeService = purposeService;

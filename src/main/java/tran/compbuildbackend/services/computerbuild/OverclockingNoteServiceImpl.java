@@ -13,9 +13,9 @@ import static tran.compbuildbackend.exceptions.ExceptionUtility.throwMessageExce
 @Service
 public class OverclockingNoteServiceImpl implements OverclockingNoteService {
 
-    private OverclockingNoteRepository overclockingNoteRepository;
+    private final OverclockingNoteRepository overclockingNoteRepository;
 
-    private ComputerBuildRepository computerBuildRepository;
+    private final ComputerBuildRepository computerBuildRepository;
 
     public OverclockingNoteServiceImpl(OverclockingNoteRepository overclockingNoteRepository, ComputerBuildRepository computerBuildRepository) {
         this.overclockingNoteRepository = overclockingNoteRepository;
@@ -28,6 +28,10 @@ public class OverclockingNoteServiceImpl implements OverclockingNoteService {
         // ensure one is the owner of the computer build that the overclocking note is being added to.
         ComputerBuild retrievedComputerBuild = ComputerBuildServiceUtility.verifyOwnerOfComputerBuild(
                 computerBuildRepository, buildIdentifier);
+
+        if(retrievedComputerBuild == null) {
+            throwMessageException(COMPUTER_BUILD_DOES_NOT_EXIST);
+        }
 
         ComputerBuildServiceUtility.setAbstractNote(retrievedComputerBuild, overclockingNote, OVERCLOCKING_NOTE_ABBREVIATION);
 
